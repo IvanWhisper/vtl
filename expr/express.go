@@ -31,11 +31,11 @@ func (item *ExprItem) Clone() *ExprItem {
 }
 
 func Flattening(item *ExprItem, result *[]*ExprItem, expId, parentId int64, idFunc func() int64) {
+	item.Id = idFunc()
 	if expId < 1 {
 		expId = item.Id
 	}
 	item.ExpressId = expId
-	item.Id = idFunc()
 	item.ParentId = parentId
 	*result = append(*result, item.Clone())
 	for _, c := range item.Childrens {
